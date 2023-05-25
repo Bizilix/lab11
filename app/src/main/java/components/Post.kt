@@ -205,3 +205,24 @@ fun PostActions(post: PostModel) {
     }
 }
 
+@Composable
+fun VotingAction(
+    text: String,
+    onUpVoteAction: () -> Unit,
+    onDownVoteAction: () -> Unit
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        ArrowButton(
+            onUpVoteAction,
+            R.drawable.ic_baseline_arrow_upward_24
+        )
+        Text(
+            text = text,
+            color = Color.Gray,
+            fontWeight = FontWeight.Medium, fontSize = 12.sp
+        )
+        ArrowButton(onDownVoteAction, R.drawable.ic_baseline_arrow_downward_24)
+    }
+
+}
+
