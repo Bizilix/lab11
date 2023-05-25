@@ -68,3 +68,29 @@ private fun TitleTextField(text: String, onTextChange: (String) -> Unit) {
 /**
  * Input view for the post body
  */
+
+@Composable
+private fun BodyTextField(text: String, onTextChange: (String) -> Unit) {
+    val activeColor = MaterialTheme.colors.onSurface
+
+    TextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(stringResource(R.string.body_text)) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 240.dp)
+            .padding(horizontal = 8.dp)
+            .padding(top = 16.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = activeColor,
+            focusedLabelColor = activeColor,
+            cursorColor = activeColor,
+            backgroundColor = MaterialTheme.colors.surface
+        )
+    )
+}
+
+/**
+ * Input view for the post body
+ */
