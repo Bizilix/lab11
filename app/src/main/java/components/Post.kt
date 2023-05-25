@@ -34,3 +34,11 @@ fun TextPost(post: PostModel) {
     }
 }
 
+@Composable
+fun ImagePost(post: PostModel) {
+    Post(post) {
+        ImageContent(post.image ?: R.drawable.compose_course)
+    }
+}
+
+
