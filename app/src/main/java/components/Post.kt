@@ -118,3 +118,23 @@ fun MoreActionsMenu() {
     }
 }
 
+@Composable
+fun CustomDropdownMenuItem(
+    @DrawableRes vectorResourceId: Int,
+    color: Color = Color.Black,
+    text: String,
+    onClickAction: () -> Unit = {}
+) {
+    DropdownMenuItem(onClick = onClickAction) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = vectorResourceId),
+                tint = color,
+                contentDescription = stringResource(id = R.string.save)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = text, fontWeight = FontWeight.Medium, color = color)
+        }
+    }
+}
+
