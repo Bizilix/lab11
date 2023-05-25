@@ -150,3 +150,17 @@ fun Title(text: String) {
     )
 }
 
+@Composable
+fun TextContent(text: String) {
+    Text(
+        modifier = Modifier.padding(
+            start = 16.dp,
+            end = 16.dp
+        ),
+        text = text,
+        color = Color.Gray,
+        fontSize = 12.sp,
+        maxLines = 3
+    )
+}
+
