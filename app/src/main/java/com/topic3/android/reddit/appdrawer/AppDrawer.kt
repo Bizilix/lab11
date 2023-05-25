@@ -243,3 +243,14 @@ private fun AppDrawerFooter(modifier: Modifier = Modifier) {
 private fun changeTheme() {
   RedditThemeSettings.isInDarkTheme.value = RedditThemeSettings.isInDarkTheme.value.not()
 }
+
+@Preview
+@Composable
+private fun ProfileInfoItemPreview() {
+  ProfileInfoItem(
+    Icons.Filled.ShoppingCart,
+    R.string.default_reddit_age_amount,
+    R.string.reddit_age,
+    Modifier
+  )
+}
