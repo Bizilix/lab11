@@ -138,3 +138,15 @@ fun CustomDropdownMenuItem(
     }
 }
 
+@Composable
+fun Title(text: String) {
+    Text(
+        text = text,
+        maxLines = 3,
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        color = MaterialTheme.colors.primaryVariant,
+        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+    )
+}
+
