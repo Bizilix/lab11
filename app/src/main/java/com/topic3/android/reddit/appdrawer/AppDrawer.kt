@@ -130,3 +130,60 @@ fun ProfileInfo(modifier: Modifier = Modifier) {
 
 
 }
+
+@Composable
+private fun ProfileInfoItem(
+  iconAsset: ImageVector,
+  amountResourceId: Int,
+  textResourceId: Int,
+  modifier: Modifier
+) {
+  val colors = MaterialTheme.colors
+
+  ConstraintLayout(modifier=modifier) {
+    val (iconRef, amountRef, titleRef) = createRefs()
+    val itemModifier = Modifier
+    Icon(
+      contentDescription = stringResource(id = textResourceId),
+      imageVector = iconAsset,
+      tint = Color.Blue,
+      modifier = itemModifier
+        .constrainAs(iconRef) {
+          centerVerticallyTo(parent)
+          start.linkTo(parent.start)
+        }
+        .padding(start = 16.dp)
+    )
+    Text(
+      text = stringResource(amountResourceId),
+      color = colors.primaryVariant,
+      fontSize = 10.sp,
+      modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(amountRef) {
+          top.linkTo(iconRef.top)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(titleRef.top)
+        }
+    )
+    Text(
+      text = stringResource(textResourceId),
+      color = Color.Gray,
+      fontSize = 10.sp,
+      modifier = itemModifier
+        .padding(start = 8.dp)
+        .constrainAs(titleRef) {
+          top.linkTo(amountRef.bottom)
+          start.linkTo(iconRef.end)
+          bottom.linkTo(iconRef.bottom)
+        }
+    )
+  }
+}
+
+
+/**
+ * Представляет действия drawer приложения:
+ * * экранная навигация
+ * * светлый/темный режим приложения
+ */
