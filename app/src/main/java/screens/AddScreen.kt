@@ -94,3 +94,22 @@ private fun BodyTextField(text: String, onTextChange: (String) -> Unit) {
 /**
  * Input view for the post body
  */
+
+@Composable
+private fun AddPostButton(isEnabled: Boolean, onSaveClicked: () -> Unit) {
+    Button(
+        onClick = onSaveClicked,
+        enabled = isEnabled,
+        content = {
+            Text(
+                text = stringResource(R.string.save_post),
+                color = MaterialTheme.colors.onSurface
+            )
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 240.dp)
+            .padding(horizontal = 8.dp)
+            .padding(top = 16.dp),
+    )
+}
