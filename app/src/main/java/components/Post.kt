@@ -59,3 +59,37 @@ fun Post(post: PostModel, content: @Composable () -> Unit = {}) {
 
 }
 
+@Composable
+fun Header(
+    post: PostModel,
+    onJoinButtonClick: (Boolean) -> Unit = {}
+){
+    Row(modifier = Modifier.padding(start = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            ImageBitmap.imageResource(id = R.drawable.subreddit_placeholder),
+            contentDescription = stringResource(id = R.string.subreddits),
+            Modifier
+                .size(40.dp)
+                .clip(CircleShape)
+        )
+        Spacer(modifier = Modifier.width(8.dp))
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = stringResource(R.string.subreddit_header, post.subreddit),
+                fontWeight = FontWeight.Medium,
+                color = MaterialTheme.colors.primaryVariant
+            )
+            Text(
+                text = stringResource(R.string.post_header, post.username, post.postedTime),
+                color = Color.Gray
+            )
+        }
+        Spacer(modifier = Modifier.width(4.dp))
+        JoinButton(onJoinButtonClick)
+        MoreActionsMenu()
+    }
+    Title(text = post.title)
+}
+
