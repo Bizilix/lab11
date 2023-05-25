@@ -262,4 +262,62 @@ fun MyProfilePost(modifier: Modifier, post: PostModel) {
     Spacer(modifier = Modifier.height(6.dp))
 }
 
+@Composable
+fun MyProfileAbout() {
+    Column {
+        ProfileInfo()
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        BackgroundText(stringResource(R.string.trophies))
+
+        val trophies = listOf(
+            R.string.verified_email,
+            R.string.gold_medal,
+            R.string.top_comment
+        )
+        LazyColumn {
+            items(trophies) { Trophy(text = stringResource(it)) }
+        }
+    }
+}
+
+@Composable
+fun ColumnScope.BackgroundText(text: String) {
+    Text(
+        fontWeight = FontWeight.Medium,
+        text = text,
+        fontSize = 10.sp,
+        color = Color.DarkGray,
+        modifier = Modifier
+            .background(color = MaterialTheme.colors.secondary)
+            .padding(start = 16.dp, top = 4.dp, bottom = 4.dp)
+            .fillMaxWidth()
+            .align(Alignment.Start)
+
+    )
+}
+
+@Composable
+fun Trophy(text: String, modifier: Modifier = Modifier) {
+    Spacer(modifier = modifier.height(16.dp))
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Spacer(modifier = modifier.width(16.dp))
+        Image(
+            bitmap = ImageBitmap.imageResource(id = R.drawable.trophy),
+            contentDescription = stringResource(id = R.string.trophies),
+            contentScale = ContentScale.Crop,
+            modifier = modifier.size(24.dp)
+        )
+        Spacer(modifier = modifier.width(16.dp))
+        Text(
+            text = text, fontSize = 12.sp,
+            color = MaterialTheme.colors.primaryVariant,
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Medium
+        )
+    }
+}
+
+
 
