@@ -151,3 +151,115 @@ fun MyProfilePosts(modifier: Modifier, viewModel: MainViewModel) {
     }
 }
 
+@Composable
+fun MyProfilePost(modifier: Modifier, post: PostModel) {
+    Card(shape = MaterialTheme.shapes.large) {
+
+        ConstraintLayout(
+            modifier = modifier.fillMaxSize()
+        ) {
+
+            val (redditIcon, subredditName, actionsBar, title, description, settingIcon) = createRefs()
+            val postModifier = Modifier
+            val colors = MaterialTheme.colors
+
+            Image(
+                imageVector = Icons.Default.Star,
+                contentDescription = stringResource(id = R.string.my_profile),
+                modifier = postModifier
+                    .size(20.dp)
+                    .constrainAs(redditIcon) {
+                        top.linkTo(parent.top)
+                        start.linkTo(parent.start)
+                    }
+                    .padding(start = 8.dp, top = 8.dp)
+            )
+
+            Image(
+                imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_more_vert_24),
+                contentDescription = stringResource(id = R.string.more_actions),
+                modifier = postModifier
+                    .size(20.dp)
+                    .constrainAs(settingIcon) {
+                        top.linkTo(parent.top)
+                        end.linkTo(parent.end)
+                    }
+                    .padding(end = 8.dp, top = 8.dp)
+            )
+
+            Text(
+                text = "${post.username} � ${post.postedTime}",
+                fontSize = 8.sp,
+                modifier = postModifier
+                    .constrainAs(subredditName) {
+                        top.linkTo(redditIcon.top)
+                        bottom.linkTo(redditIcon.bottom)
+                        start.linkTo(redditIcon.end)
+                    }
+                    .padding(start = 2.dp, top = 8.dp)
+            )
+
+            Text(
+                text = post.title,
+                color = colors.primaryVariant,
+                fontSize = 12.sp,
+                modifier = postModifier
+                    .constrainAs(title) {
+                        top.linkTo(redditIcon.bottom)
+                        start.linkTo(redditIcon.start)
+                    }
+                    .padding(start = 8.dp, top = 8.dp)
+            )
+
+            Text(
+                text = post.text,
+                color = Color.DarkGray,
+                fontSize = 10.sp,
+                modifier = postModifier
+                    .constrainAs(description) {
+                        top.linkTo(title.bottom)
+                        start.linkTo(redditIcon.start)
+                    }
+                    .padding(start = 8.dp, top = 8.dp)
+            )
+
+            Row(
+                modifier = postModifier
+                    .fillMaxWidth()
+                    .constrainAs(actionsBar) {
+                        top.linkTo(description.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    }
+                    .padding(
+                        top = 8.dp,
+                        bottom = 8.dp,
+                        end = 16.dp,
+                        start = 16.dp
+                    ),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PostAction(
+                    vectorResourceId = R.drawable.ic_baseline_arrow_upward_24,
+                    text = post.likes,
+                    onClickAction = {}
+                )
+                PostAction(
+                    vectorResourceId = R.drawable.ic_baseline_comment_24,
+                    text = post.comments,
+                    onClickAction = {}
+                )
+                PostAction(
+                    vectorResourceId = R.drawable.ic_baseline_share_24,
+                    text = stringResource(R.string.share),
+                    onClickAction = {}
+                )
+            }
+        }
+    }
+
+    Spacer(modifier = Modifier.height(6.dp))
+}
+
+
