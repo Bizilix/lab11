@@ -44,3 +44,27 @@ fun AddScreen(viewModel: MainViewModel) {
 /**
  * Input view for the post title
  */
+
+@Composable
+private fun TitleTextField(text: String, onTextChange: (String) -> Unit) {
+    val activeColor = MaterialTheme.colors.onSurface
+
+    TextField(
+        value = text,
+        onValueChange = onTextChange,
+        label = { Text(stringResource(R.string.title)) },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            focusedBorderColor = activeColor,
+            focusedLabelColor = activeColor,
+            cursorColor = activeColor,
+            backgroundColor = MaterialTheme.colors.surface
+        )
+    )
+}
+
+/**
+ * Input view for the post body
+ */
