@@ -258,3 +258,46 @@ fun PostAction(
     }
 }
 
+
+@Preview(showBackground = true)
+@Composable
+fun ArrowButtonPreview() {
+    ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HeaderPreview() {
+    Column {
+        Header(DEFAULT_POST)
+    }
+}
+
+@Preview
+@Composable
+fun VotingActionPreview() {
+    VotingAction("555", {}, {})
+}
+
+@Preview
+@Composable
+fun PostPreview() {
+    Post(DEFAULT_POST)
+}
+
+@Preview
+@Composable
+fun TextPostPreview() {
+    Post(DEFAULT_POST) {
+        TextContent(DEFAULT_POST.text)
+    }
+}
+
+@Preview
+@Composable
+fun ImagePostPreview() {
+    Post(DEFAULT_POST) {
+        ImageContent(DEFAULT_POST.image ?: R.drawable.compose_course)
+    }
+}
+
