@@ -139,3 +139,15 @@ private fun changeScreen(index: Int) {
     }
 }
 
+@Composable
+fun MyProfilePosts(modifier: Modifier, viewModel: MainViewModel) {
+
+    val posts: List<PostModel> by viewModel.myPosts.observeAsState(listOf())
+
+    LazyColumn(
+        modifier = modifier.background(color = MaterialTheme.colors.secondary)
+    ) {
+        items(posts) { MyProfilePost(modifier, it) }
+    }
+}
+
