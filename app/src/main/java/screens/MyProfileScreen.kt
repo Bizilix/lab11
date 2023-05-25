@@ -105,3 +105,37 @@ fun MyProfileScreen(viewModel: MainViewModel, modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MyProfileTabs(modifier: Modifier = Modifier) {
+    var selectedIndex by remember { mutableStateOf(0) }
+    TabRow(
+        selectedTabIndex = selectedIndex,
+        backgroundColor = MaterialTheme.colors.primary,
+        modifier = modifier
+    ) {
+        tabNames.forEachIndexed { index, nameResource ->
+            Tab(
+                selected = index == selectedIndex,
+                onClick = {
+                    selectedIndex = index
+                    changeScreen(index)
+                }
+            ) {
+                Text(
+                    color = MaterialTheme.colors.primaryVariant,
+                    fontSize = 12.sp,
+                    text = stringResource(nameResource),
+                    modifier = Modifier.padding(top = 8.dp, bottom = 8.dp)
+                )
+            }
+        }
+    }
+}
+
+private fun changeScreen(index: Int) {
+    return when (index) {
+        0 -> MyProfileRouter.navigateTo(MyProfileScreenType.Posts)
+        else -> MyProfileRouter.navigateTo(MyProfileScreenType.About)
+    }
+}
+
