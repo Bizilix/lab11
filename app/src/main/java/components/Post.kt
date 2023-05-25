@@ -204,3 +204,9 @@ fun PostActions(post: PostModel) {
         )
     }
 }
+
+@Preview
+@Composable
+fun ArrowButtonPreview() {
+    ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
+}
