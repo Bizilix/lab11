@@ -164,3 +164,17 @@ fun TextContent(text: String) {
     )
 }
 
+@Composable
+fun ImageContent(image: Int) {
+    val imageAsset = ImageBitmap.imageResource(id = image)
+    Image(
+        bitmap = imageAsset,
+        contentDescription = stringResource(id = R.string.post_header_description),
+        modifier = Modifier
+            .fillMaxWidth()
+            .aspectRatio(imageAsset.width.toFloat() / imageAsset.height),
+        contentScale = ContentScale.Crop
+    )
+}
+
+
