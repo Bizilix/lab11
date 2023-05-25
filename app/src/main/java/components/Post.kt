@@ -177,4 +177,31 @@ fun ImageContent(image: Int) {
     )
 }
 
+@Composable
+fun PostActions(post: PostModel) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        VotingAction(text = post.likes, onUpVoteAction = {}, onDownVoteAction = {})
+        PostAction(
+            vectorResourceId = R.drawable.ic_baseline_comment_24,
+            text = post.comments,
+            onClickAction = {}
+        )
+        PostAction(
+            vectorResourceId = R.drawable.ic_baseline_share_24,
+            text = stringResource(R.string.share),
+            onClickAction = {}
+        )
+        PostAction(
+            vectorResourceId = R.drawable.ic_baseline_emoji_events_24,
+            text = stringResource(R.string.award),
+            onClickAction = {}
+        )
+    }
+}
 
