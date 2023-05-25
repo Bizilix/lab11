@@ -238,3 +238,23 @@ fun ArrowButton(onClickAction: () -> Unit, arrowResourceId: Int) {
     }
 }
 
+@Composable
+fun PostAction(
+    @DrawableRes vectorResourceId: Int,
+    text: String,
+    onClickAction: () -> Unit
+) {
+    Box(modifier = Modifier.clickable(onClick = onClickAction)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(
+                ImageVector.vectorResource(id = vectorResourceId),
+                contentDescription = stringResource(id = R.string.post_action),
+                tint = Color.Gray,
+                modifier = Modifier.size(20.dp)
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(text = text, fontWeight = FontWeight.Medium, color = Color.Gray, fontSize = 12.sp)
+        }
+    }
+}
+
