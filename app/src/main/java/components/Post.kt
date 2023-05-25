@@ -210,3 +210,11 @@ fun PostActions(post: PostModel) {
 fun ArrowButtonPreview() {
     ArrowButton({}, R.drawable.ic_baseline_arrow_upward_24)
 }
+
+@Preview
+@Composable
+fun HeaderPreview() {
+    Column {
+        Header(DEFAULT_POST)
+    }
+}
