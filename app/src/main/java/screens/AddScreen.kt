@@ -113,3 +113,35 @@ private fun AddPostButton(isEnabled: Boolean, onSaveClicked: () -> Unit) {
             .padding(top = 16.dp),
     )
 }
+
+@Composable
+private fun CommunityPicker(selectedCommunity: String) {
+
+    val selectedText =
+        if (selectedCommunity.isEmpty()) stringResource(R.string.choose_community) else selectedCommunity
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(max = 240.dp)
+            .padding(horizontal = 8.dp)
+            .padding(top = 16.dp)
+            .clickable {
+                RedditRouter.navigateTo(Screen.ChooseCommunity)
+            },
+    ) {
+        Image(
+            bitmap = ImageBitmap.imageResource(id = R.drawable.subreddit_placeholder),
+            contentDescription = stringResource(id = R.string.subreddits),
+            modifier = Modifier
+                .size(24.dp)
+                .clip(CircleShape)
+        )
+
+        Text(
+            text = selectedText,
+            modifier = Modifier.padding(start = 8.dp)
+        )
+    }
+}
+
