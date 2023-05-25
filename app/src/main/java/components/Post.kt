@@ -93,3 +93,28 @@ fun Header(
     Title(text = post.title)
 }
 
+@Composable
+fun MoreActionsMenu() {
+    var expanded by remember { mutableStateOf(false) }
+    Box(modifier = Modifier.wrapContentSize(Alignment.TopStart)) {
+
+        IconButton(onClick = { expanded = true }) {
+            Icon(
+                imageVector = Icons.Default.MoreVert,
+                tint = Color.DarkGray,
+                contentDescription = stringResource(id = R.string.more_actions)
+            )
+        }
+
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            CustomDropdownMenuItem(
+                vectorResourceId = R.drawable.ic_baseline_bookmark_24,
+                text = stringResource(id = R.string.save)
+            )
+        }
+    }
+}
+
